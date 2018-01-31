@@ -1,4 +1,4 @@
-#CLI application for user management in filemanager application
+# CLI application for user management in filemanager application
 
 # Installation
 
@@ -19,6 +19,6 @@ add-filemanager-user [username] [password] [directory]
 
 ```sh
 FILEMANAGER_BASEURL         # default http://localhost
-FILEMANAGER_ADMIN_USERNAME  # default "admin",
-FILEMANAGER_ADMIN_PASSWORD  # default "admin",
+FILEMANAGER_ADMIN_USERNAME  # default "admin"
+FILEMANAGER_ADMIN_PASSWORD  # default "admin"
 ```
