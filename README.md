@@ -14,3 +14,11 @@ npm link
 ```sh
 add-filemanager-user [username] [password] [directory]
 ```
+
+### Following environment variables could be used
+
+```sh
+FILEMANAGER_BASEURL         # default http://localhost
+FILEMANAGER_ADMIN_USERNAME  # default "admin",
+FILEMANAGER_ADMIN_PASSWORD  # default "admin",
+```
