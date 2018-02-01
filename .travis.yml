@@ -1,0 +1,4 @@
+deploy:
+  provider: npm
+  email: "npmjs@ironshark.de"
+  api_key: "168eaef9-7e16-487d-89a8-d0ba6383c371"
