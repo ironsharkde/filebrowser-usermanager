@@ -14,7 +14,7 @@ npm install filemanager-usermanager -g
 # Usage
 
 ```sh
-add-filemanager-user [username] [password] [directory]
+filemanager-user-add [username] [password] [directory]
 ```
 
 ### Following environment variables could be used

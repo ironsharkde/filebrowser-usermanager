@@ -7,7 +7,7 @@
     "url": "ssh://git@git.isdev.de:9022/ironshark/filemanager-usermanager.git"
   },
   "bin": {
-    "add-filemanager-user": "bin/add.js"
+    "filemanager-user-add": "bin/add.js"
   },
   "author": "Anton Pauli <pauli@ironshark.de>",
   "license": "MIT",
