@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 var request = require("request-promise");
-var find = require('lodash/find');
+var find = require("lodash/find");
 
 var filemanager = {
     token: null,
@@ -118,8 +118,7 @@ var filemanager = {
     }
 }
 
-function main(params) {
-    filemanager.token = params.token;
+function main() {
     return filemanager.authenticate()
         .then(filemanager.loadUsers)
         .then(filemanager.removeUser)
@@ -132,6 +131,12 @@ if(!filemanager.newUserUsername || !filemanager.newUserPassword) {
     return;
 }
 
-main({"token": process.argv[2]}).then(function(result) {
-    console.log("Done...");
-});
+try {
+    main().then(function() {
+        console.log("Done...");
+    });
+}
+catch (e) {
+    console.error(e);
+    process.exit(1);
+}
