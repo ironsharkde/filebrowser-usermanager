@@ -8,10 +8,7 @@ Check following [#285 issue](https://github.com/hacdias/filemanager/issues/285) 
 # Installation
 
 ```sh
-git clone ssh://git@git.isdev.de:9022/ironshark/filemanager-usermanager.git
-cd filemanager-usermanager
-npm i
-npm link
+npm install filemanager-usermanager -g
 ```
 
 # Usage
