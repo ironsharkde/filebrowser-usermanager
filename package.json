@@ -1,0 +1,19 @@
+{
+  "name": "filemanager-usermanager",
+  "version": "0.0.1",
+  "description": "CLI application for user management in filemanager application",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.isdev.de:9022/ironshark/filemanager-usermanager.git"
+  },
+  "bin": {
+    "filemanager-user-add": "bin/add.js"
+  },
+  "author": "Anton Pauli <pauli@ironshark.de>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}
