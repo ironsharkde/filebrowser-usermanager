@@ -25,10 +25,8 @@ var filemanager = {
         }).then(function(response) {
             console.log("Authentication successful");
             filemanager.token = response;
-            return false;
-        }, function(body){
-            console.log("Authentication failed");
-            return body;
+        }, function(){
+            throw "Authentication failed";
         });
     },
 
@@ -43,9 +41,8 @@ var filemanager = {
             filemanager.users = JSON.parse(response);
             console.log(filemanager.users.length + " users found");
             return true;
-        }, function(body){
-            console.log("Unable to load users");
-            return false;
+        }, function(){
+            throw "Unable to load users";
         });
     },
 
@@ -70,8 +67,7 @@ var filemanager = {
             console.log("User successful deleted");
             return true;
         }, function(){
-            console.log("Unable to delete user");
-            return false;
+            throw "Unable to delete user";
         });
     },
 
@@ -110,10 +106,8 @@ var filemanager = {
         }).then(function() {
             console.log("User created");
             return true;
-        }, function(body){
-            console.log("Unable to create user");
-            console.log(body.response.body);
-            return false;
+        }, function(){
+            throw "Unable to create user";
         });
     }
 }
