@@ -3,12 +3,12 @@
 var request = require("request-promise");
 var find = require("lodash/find");
 
-var filemanager = {
+var filebrowser = {
     token: null,
     users: [],
-    baseUrl: process.env.FILEMANAGER_BASEURL || "http://localhost",
-    adminUsername: process.env.FILEMANAGER_ADMIN_USERNAME || "admin",
-    adminPassword: process.env.FILEMANAGER_ADMIN_PASSWORD || "admin",
+    baseUrl: process.env.FILEBROWSER_BASEURL || "http://localhost",
+    adminUsername: process.env.FILEBROWSER_ADMIN_USERNAME || "admin",
+    adminPassword: process.env.FILEBROWSER_ADMIN_PASSWORD || "admin",
     newUserUsername: process.argv[2],
     newUserPassword: process.argv[3],
     newUserDirectory: process.argv[4] || "",
@@ -17,14 +17,14 @@ var filemanager = {
     authenticate: function() {
         return request({
             "method":"POST",
-            "uri": filemanager.baseUrl + "/api/auth/get",
+            "uri": filebrowser.baseUrl + "/api/auth/get",
             "json": {
-                "username": filemanager.adminUsername,
-                "password": filemanager.adminPassword
+                "username": filebrowser.adminUsername,
+                "password": filebrowser.adminPassword
             }
         }).then(function(response) {
             console.log("Authentication successful");
-            filemanager.token = response;
+            filebrowser.token = response;
         }, function(){
             throw "Authentication failed";
         });
@@ -33,13 +33,13 @@ var filemanager = {
     loadUsers: function() {
         return request({
             "method": "GET",
-            "uri": filemanager.baseUrl + "/api/users/",
+            "uri": filebrowser.baseUrl + "/api/users/",
             "headers": {
-                "Authorization": "Bearer " + filemanager.token
+                "Authorization": "Bearer " + filebrowser.token
             }
         }).then(function(response) {
-            filemanager.users = JSON.parse(response);
-            console.log(filemanager.users.length + " users found");
+            filebrowser.users = JSON.parse(response);
+            console.log(filebrowser.users.length + " users found");
             return true;
         }, function(){
             throw "Unable to load users";
@@ -47,7 +47,7 @@ var filemanager = {
     },
 
     removeUser: function() {
-        var user = find(filemanager.users, {username: filemanager.newUserUsername});
+        var user = find(filebrowser.users, {username: filebrowser.newUserUsername});
 
         // skip if user not already exists
         if (!user) {
@@ -59,9 +59,9 @@ var filemanager = {
         // delete user
         return request({
             "method": "DELETE",
-            "uri": filemanager.baseUrl + "/api/users/" + user.ID,
+            "uri": filebrowser.baseUrl + "/api/users/" + user.ID,
             "headers": {
-                "Authorization": "Bearer " + filemanager.token
+                "Authorization": "Bearer " + filebrowser.token
             }
         }).then(function() {
             console.log("User successful deleted");
@@ -74,19 +74,19 @@ var filemanager = {
     addUser: function() {
         return request({
             "method":"POST",
-            "uri": filemanager.baseUrl + "/api/users/",
+            "uri": filebrowser.baseUrl + "/api/users/",
             "headers": {
-                "Authorization": "Bearer " + filemanager.token
+                "Authorization": "Bearer " + filebrowser.token
             },
             "json": {
                 "what": "user",
                 "which": "new",
                 "data": {
                     "ID": 0,
-                    "username": filemanager.newUserUsername,
-                    "password": filemanager.newUserPassword,
+                    "username": filebrowser.newUserUsername,
+                    "password": filebrowser.newUserPassword,
                     "admin": false,
-                    "filesystem": filemanager.rootDataDirectory + "/" + filemanager.newUserDirectory,
+                    "filesystem": filebrowser.rootDataDirectory + "/" + filebrowser.newUserDirectory,
                     "rules": [
 
                     ],
@@ -113,15 +113,15 @@ var filemanager = {
 }
 
 function main() {
-    return filemanager.authenticate()
-        .then(filemanager.loadUsers)
-        .then(filemanager.removeUser)
-        .then(filemanager.addUser);
+    return filebrowser.authenticate()
+        .then(filebrowser.loadUsers)
+        .then(filebrowser.removeUser)
+        .then(filebrowser.addUser);
 }
 
-if(!filemanager.newUserUsername || !filemanager.newUserPassword) {
+if(!filebrowser.newUserUsername || !filebrowser.newUserPassword) {
     console.log("Usage:");
-    console.log("add-filemanager-user [username] [password] [directory]");
+    console.log("filebrowser-user-add [username] [password] [directory]");
     return;
 }
 
