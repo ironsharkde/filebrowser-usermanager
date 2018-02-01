@@ -131,12 +131,9 @@ if(!filemanager.newUserUsername || !filemanager.newUserPassword) {
     return;
 }
 
-try {
-    main().then(function() {
-        console.log("Done...");
-    });
-}
-catch (e) {
+main().then(function() {
+    console.log("Done...");
+}).catch(function(e){
     console.error(e);
     process.exit(1);
-}
+});
