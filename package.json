@@ -2,6 +2,10 @@
   "name": "filebrowser-usermanager",
   "version": "0.0.2",
   "description": "CLI application for user management in filebrowser application",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ironsharkde/filebrowser-usermanager.git"
+  },
   "bin": {
     "filebrowser-user-add": "bin/add.js"
   },
