@@ -1,13 +1,9 @@
 {
-  "name": "filemanager-usermanager",
-  "version": "0.0.1",
-  "description": "CLI application for user management in filemanager application",
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@git.isdev.de:9022/ironshark/filemanager-usermanager.git"
-  },
+  "name": "filebrowser-usermanager",
+  "version": "0.0.2",
+  "description": "CLI application for user management in filebrowser application",
   "bin": {
-    "filemanager-user-add": "bin/add.js"
+    "filebrowser-user-add": "bin/add.js"
   },
   "author": "Anton Pauli <pauli@ironshark.de>",
   "license": "MIT",
